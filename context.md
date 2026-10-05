@@ -434,13 +434,17 @@ Before making significant architectural changes:
 
 ## Current project status
 
-This is a new project. No implementation should be assumed to exist.
+The local MVP foundation uses Laravel, MySQL, Vue 3, Vite, and TypeScript with
+development-only mock content. Docker Compose is local-development-only; production
+deployment remains a native Ubuntu, Nginx, PHP-FPM, MySQL, and Vite-build stack.
 
 ### Immediate next step
 
-Validate whether the official Meta Graph API can support the exact requirement of retrieving posts from selected public Facebook Pages for this personal reader application.
+Obtain Meta approval for Page Public Content Access (PPCA), then validate the
+approved API access in Graph API Explorer against a representative public Page not
+managed by the user. See `docs/facebook-api-feasibility.md`.
 
-Only implement Facebook integration after that validation.
+Only implement Facebook integration after PPCA approval and that validation.
 
 ## Decision log
 
@@ -458,3 +462,7 @@ Maintain important decisions in this section. Update a decision here when it cha
 | Hosting | Low-cost VPS |
 | Primary goal | Reduce Facebook browsing and distraction |
 | MVP | Selected Pages -> posts -> focused dashboard |
+| Facebook API feasibility (2026-10-05) | PPCA can support public, unmanaged Page posts only after Meta App Review/Advanced Access; do not implement until approval and proof of concept. See `docs/facebook-api-feasibility.md`. |
+| Local MVP content source | `MockFacebookContentSource` behind `ContentSourceInterface`; no Meta integration is implemented. |
+| Local development | Docker Compose with PHP/Laravel, MySQL 8, and Node/Vite only. |
+| Production deployment | Native Ubuntu stack on DigitalOcean; Docker is not used in production. |
